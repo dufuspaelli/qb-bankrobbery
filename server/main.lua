@@ -375,31 +375,49 @@ end)
 
 QBCore.Functions.CreateUseableItem("thermite", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
-	if Player.Functions.GetItemByName('lighter') ~= nil then -- TODO: USE MAGNESIUM
-        TriggerClientEvent("thermite:UseThermite", source)
+    if Player.PlayerData.job.name == "police" then 
+        TriggerClientEvent('QBCore:Notify', source, "You're a police officer, not a bank robber.", "error")
     else
-        TriggerClientEvent('QBCore:Notify', source, "You're missing ignition source ", "error")
+        if Player.Functions.GetItemByName('lighter') ~= nil then -- TODO: USE MAGNESIUM
+            TriggerClientEvent("thermite:UseThermite", source)
+        else
+            TriggerClientEvent('QBCore:Notify', source, "You're missing ignition source ", "error")
+        end
     end
 end)
 
 QBCore.Functions.CreateUseableItem("security_card_01", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
-	if Player.Functions.GetItemByName('security_card_01') ~= nil then
-        TriggerClientEvent("qb-bankrobbery:UseBankcardA", source)
+    if Player.PlayerData.job.name == "police" then 
+        TriggerClientEvent('QBCore:Notify', source, "You're a police officer, not a bank robber.", "error")
+    else
+        if Player.Functions.GetItemByName('security_card_01') ~= nil then
+            TriggerClientEvent("qb-bankrobbery:UseBankcardA", source)
+        end
     end
 end)
 
 QBCore.Functions.CreateUseableItem("security_card_02", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
-	if Player.Functions.GetItemByName('security_card_02') ~= nil then
-        TriggerClientEvent("qb-bankrobbery:UseBankcardB", source)
+    if Player.PlayerData.job.name == "police" then 
+        TriggerClientEvent('QBCore:Notify', source, "You're a police officer, not a bank robber.", "error")
+    else
+        if Player.Functions.GetItemByName('security_card_02') ~= nil then
+            TriggerClientEvent("qb-bankrobbery:UseBankcardB", source)
+        end
     end
 end)
 
 QBCore.Functions.CreateUseableItem("electronickit", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
-    if Player.Functions.GetItemByName('electronickit') ~= nil then
-        TriggerClientEvent("electronickit:UseElectronickit", source)
+    if Player.PlayerData.job.name == "police" then 
+        print("triggered")
+        TriggerClientEvent('QBCore:Notify', source, "You're a police officer, not a bank robber.", "error")
+    else
+        print("triggered")
+        if Player.Functions.GetItemByName('electronickit') ~= nil then
+            TriggerClientEvent("electronickit:UseElectronickit", source)
+        end
     end
 end)
 
